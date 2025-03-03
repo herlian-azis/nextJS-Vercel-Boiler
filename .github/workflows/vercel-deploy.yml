@@ -23,14 +23,14 @@ jobs:
       - name: Deploy to Vercel
         run: |
           echo "🚀 Starting Vercel Deployment..."
-          DEPLOY_URL=$(vercel --name=my-project-vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }} | grep -Eo 'https://[a-zA-Z0-9.-]+')
+          DEPLOY_URL=$(vercel --name=next-js-vercel-env --prod --yes --token=${{ secrets.VERCEL_TOKEN }} | grep -Eo 'https://[a-zA-Z0-9.-]+')
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
           echo "✅ Deployment URL: $DEPLOY_URL"
 
       - name: Get Vercel Custom Domain
         run: |
           CUSTOM_DOMAIN=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-          "https://api.vercel.com/v6/domains" | jq -r '.domains[] | select(.projectId=="my-project-vercel") | .name')
+          "https://api.vercel.com/v6/domains" | jq -r '.domains[] | select(.projectId=="next-js-vercel-env") | .name')
 
           echo "CUSTOM_DOMAIN=$CUSTOM_DOMAIN" >> $GITHUB_ENV
           echo "🌍 Custom Domain: $CUSTOM_DOMAIN"
