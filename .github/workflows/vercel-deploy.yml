@@ -23,7 +23,7 @@ jobs:
       - name: Deploy to Vercel
         run: |
             echo "Starting Vercel Deployment..."
-            DEPLOY_URL=$(vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }} | grep -Eo 'https://[a-zA-Z0-9.-]+')
+            DEPLOY_URL=$(vercel --name=my-project-vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }} | grep -Eo 'https://[a-zA-Z0-9.-]+')
             echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
             echo "Deployment URL captured: $DEPLOY_URL"
 
