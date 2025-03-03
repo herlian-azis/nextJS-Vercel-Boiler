@@ -1,0 +1,22 @@
+name: Deploy to Vercel & Notify Discord
+
+on:
+  push:
+    branches:
+      - main  # Sesuaikan dengan branch utama repo
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to Vercel
+        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Notify Discord
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d \
+          '{"content": "🚀 Deployment Success! URL: https://your-app.vercel.app"}' \
+          ${{ secrets.DISCORD_WEBHOOK }}

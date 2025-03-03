@@ -14,6 +14,7 @@ export default function Home() {
           priority
         />
         <ol>
+          <li>update github workflow</li>
           <li>
             Get started by editing <code>src/app/page.tsx</code>.
           </li>
