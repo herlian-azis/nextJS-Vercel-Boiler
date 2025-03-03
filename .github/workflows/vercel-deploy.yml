@@ -15,7 +15,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18  # Pakai versi yang kompatibel
+          node-version: 22  # Pakai versi yang kompatibel
 
       - name: Install Vercel CLI
         run: npm install -g vercel
@@ -27,13 +27,13 @@ jobs:
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
           echo "✅ Deployment URL: $DEPLOY_URL"
 
-      - name: Get Vercel Custom Domain
-        run: |
-          CUSTOM_DOMAIN=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-          "https://api.vercel.com/v6/domains" | jq -r '.domains[] | select(.projectId=="prj_rbTryadwD8NufImOyMutyG1aqI4x") | .name')
+      # - name: Get Vercel Custom Domain
+      #   run: |
+      #     CUSTOM_DOMAIN=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+      #     "https://api.vercel.com/v6/domains" | jq -r '.domains[] | select(.projectId=="prj_rbTryadwD8NufImOyMutyG1aqI4x") | .name')
 
-          echo "CUSTOM_DOMAIN=$CUSTOM_DOMAIN" >> $GITHUB_ENV
-          echo "🌍 Custom Domain: $CUSTOM_DOMAIN"
+      #     echo "CUSTOM_DOMAIN=$CUSTOM_DOMAIN" >> $GITHUB_ENV
+      #     echo "🌍 Custom Domain: $CUSTOM_DOMAIN"
 
       # - name: Get Vercel Alias
       #    run: |
@@ -53,7 +53,7 @@ jobs:
             --arg alias "$ALIAS_DOMAIN" \
             --arg branch "$GITHUB_REF_NAME" \
             --arg author "${{ github.actor }}" \
-            --arg time "$(date -u)" \
+            --arg time "$(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S')"\
             '{
               username: "Vercel Bot",
               avatar_url: "https://vercel.com/favicon.ico",
@@ -64,7 +64,7 @@ jobs:
                   fields: [
                     { name: "📄 Status", value: $status },
                     { name: "🔗 Vercel Preview URL", value: $preview_url },
-                    { name: "🌍 Alias", value: $alias },
+                    { name: "🌍 Production URL", value: https://next-js-vercel-env.vercel.app/ },
                     { name: "🔀 Branch", value: $branch },
                     { name: "👤 Author", value: $author },
                     { name: "🕒 Deploy Time", value: $time }
