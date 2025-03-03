@@ -30,7 +30,7 @@ jobs:
       - name: Get Vercel Custom Domain
         run: |
           CUSTOM_DOMAIN=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-          "https://api.vercel.com/v6/domains" | jq -r '.domains[] | select(.projectId=="next-js-vercel-env") | .name')
+          "https://api.vercel.com/v6/domains" | jq -r '.domains[] | select(.projectId=="prj_rbTryadwD8NufImOyMutyG1aqI4x") | .name')
 
           echo "CUSTOM_DOMAIN=$CUSTOM_DOMAIN" >> $GITHUB_ENV
           echo "🌍 Custom Domain: $CUSTOM_DOMAIN"
