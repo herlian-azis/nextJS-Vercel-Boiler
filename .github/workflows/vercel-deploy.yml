@@ -35,13 +35,13 @@ jobs:
           echo "CUSTOM_DOMAIN=$CUSTOM_DOMAIN" >> $GITHUB_ENV
           echo "🌍 Custom Domain: $CUSTOM_DOMAIN"
 
-      - name: Get Vercel Alias
-         run: |
-          ALIAS_DOMAIN=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-          "https://api.vercel.com/v9/projects/prj_rbTryadwD8NufImOyMutyG1aqI4x" | jq -r '.targets.production.alias[]')
+      # - name: Get Vercel Alias
+      #    run: |
+      #     ALIAS_DOMAIN=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+      #     "https://api.vercel.com/v9/projects/prj_rbTryadwD8NufImOyMutyG1aqI4x" | jq -r '.targets.production.alias[]')
 
-          echo "ALIAS_DOMAIN=$ALIAS_DOMAIN" >> $GITHUB_ENV
-          echo "🌍 ALL Domains: $ALIAS_DOMAIN"
+      #     echo "ALIAS_DOMAIN=$ALIAS_DOMAIN" >> $GITHUB_ENV
+      #     echo "🌍 ALL Domains: $ALIAS_DOMAIN"
 
 
       - name: Notify Discord
