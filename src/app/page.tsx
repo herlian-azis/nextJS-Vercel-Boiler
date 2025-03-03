@@ -19,6 +19,7 @@ export default function Home() {
           </li>
           <li>this vercel ENV. {process.env.VERCEL_ENV}</li>
           <li>Save and see your env VAR. {process.env.ENV_VAR}</li>
+          <li>Save and see your env VAR. {process.env.MONGO_URI}</li>
         </ol>
 
         <div className={styles.ctas}>
