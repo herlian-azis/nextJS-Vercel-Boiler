@@ -35,6 +35,15 @@ jobs:
           echo "CUSTOM_DOMAIN=$CUSTOM_DOMAIN" >> $GITHUB_ENV
           echo "🌍 Custom Domain: $CUSTOM_DOMAIN"
 
+      - name: Get Vercel Alias
+         run: |
+          ALIAS=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+          "https://api.vercel.com/v9/projects/prj_rbTryadwD8NufImOyMutyG1aqI4x" | jq -r '.targets.production.alias[]')
+
+          echo "ALIAS=$ALIAS" >> $GITHUB_ENV
+          echo "🌍 ALL Domains: $ALIAS"
+
+
       - name: Notify Discord
         run: |
           JSON_PAYLOAD=$(jq -n \
@@ -42,6 +51,7 @@ jobs:
             --arg status "✅ Success" \
             --arg preview_url "$DEPLOY_URL" \
             --arg custom_url "$CUSTOM_DOMAIN" \
+            --arg alias "$ALIAS" \
             --arg branch "$GITHUB_REF_NAME" \
             --arg author "${{ github.actor }}" \
             --arg time "$(date -u)" \
@@ -56,6 +66,7 @@ jobs:
                     { name: "📄 Status", value: $status },
                     { name: "🔗 Vercel Preview URL", value: $preview_url },
                     { name: "🌍 Custom Domain", value: $custom_url },
+                    { name: "🌍 Alias", value: $alias },
                     { name: "🔀 Branch", value: $branch },
                     { name: "👤 Author", value: $author },
                     { name: "🕒 Deploy Time", value: $time }
