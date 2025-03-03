@@ -27,14 +27,8 @@ jobs:
             echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
             echo "Deployment URL captured: $DEPLOY_URL"
 
-
-- name: Debug Deployment URL
-  run: echo "Deployment URL: ${{ env.DEPLOY_URL }}"
-
-      # - name: Debug Deployment URL
-      #   run: echo "Deployment URL: $DEPLOY_URL"
-      #   env:
-      #     DEPLOY_URL: ${{ env.DEPLOY_URL }}
+      - name: Debug Deployment URL
+        run: echo "Deployment URL: ${{ env.DEPLOY_URL }}"
 
       - name: Notify Discord
         run: |
