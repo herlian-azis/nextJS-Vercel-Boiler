@@ -22,14 +22,20 @@ jobs:
 
       - name: Deploy to Vercel
         run: |
-          DEPLOY_URL=$(vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }} | grep -Eo 'https://[a-zA-Z0-9.-]+')
-          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+            echo "Starting Vercel Deployment..."
+            DEPLOY_URL=$(vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }} | grep -Eo 'https://[a-zA-Z0-9.-]+')
+            echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+            echo "Deployment URL captured: $DEPLOY_URL"
 
       - name: Debug Deployment URL
         run: echo "Deployment URL: $DEPLOY_URL"
+        env:
+          DEPLOY_URL: ${{ env.DEPLOY_URL }}
 
       - name: Notify Discord
         run: |
           curl -X POST -H "Content-Type: application/json" -d \
           "{\"content\": \"🚀 Deployment Success! URL: $DEPLOY_URL\"}" \
           ${{ secrets.DISCORD_WEBHOOK }}
+        env:
+          DEPLOY_URL: ${{ env.DEPLOY_URL }}
