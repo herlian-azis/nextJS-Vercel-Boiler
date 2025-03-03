@@ -28,5 +28,5 @@ jobs:
       - name: Notify Discord
         run: |
           curl -X POST -H "Content-Type: application/json" -d \
-          '{"content": "🚀 Deployment Success! Success! URL: $DEPLOY_URL\"}"\
+          "{\"content\": \"🚀 Deployment Success! URL: $DEPLOY_URL\"}" \
           ${{ secrets.DISCORD_WEBHOOK }}
