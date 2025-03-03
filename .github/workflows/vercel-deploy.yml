@@ -50,7 +50,7 @@ jobs:
             --arg title "🚀 Deployment Success!" \
             --arg status "✅ Success" \
             --arg preview_url "$DEPLOY_URL" \
-            --arg alias "$ALIAS_DOMAIN" \
+            --arg global_domain "https://next-js-vercel-env.vercel.app" \
             --arg branch "$GITHUB_REF_NAME" \
             --arg author "${{ github.actor }}" \
             --arg time "$(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S')"\
@@ -64,7 +64,7 @@ jobs:
                   fields: [
                     { name: "📄 Status", value: $status },
                     { name: "🔗 Vercel Preview URL", value: $preview_url },
-                    { name: "🌍 Production URL", value: https://next-js-vercel-env.vercel.app/ },
+                    { name: "🌍 Global URL", value: $global_domain },
                     { name: "🔀 Branch", value: $branch },
                     { name: "👤 Author", value: $author },
                     { name: "🕒 Deploy Time", value: $time }
