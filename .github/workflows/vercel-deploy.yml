@@ -27,21 +27,21 @@ jobs:
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
           echo "✅ Deployment URL: $DEPLOY_URL"
 
-      # - name: Get Vercel Custom Domain
-      #   run: |
-      #     CUSTOM_DOMAIN=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-      #     "https://api.vercel.com/v6/domains" | jq -r '.domains[] | select(.projectId=="prj_rbTryadwD8NufImOyMutyG1aqI4x") | .name')
+      - name: Get Vercel Custom Domain
+        run: |
+          CUSTOM_DOMAIN=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+          "https://api.vercel.com/v6/domains" | jq -r '.domains[] | select(.projectId=="prj_rbTryadwD8NufImOyMutyG1aqI4x") | .name')
 
-      #     echo "CUSTOM_DOMAIN=$CUSTOM_DOMAIN" >> $GITHUB_ENV
-      #     echo "🌍 Custom Domain: $CUSTOM_DOMAIN"
+          echo "CUSTOM_DOMAIN=$CUSTOM_DOMAIN" >> $GITHUB_ENV
+          echo "🌍 Custom Domain: $CUSTOM_DOMAIN"
 
       - name: Get Vercel Alias
          run: |
-          ALIAS=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+          ALIAS_DOMAIN=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
           "https://api.vercel.com/v9/projects/prj_rbTryadwD8NufImOyMutyG1aqI4x" | jq -r '.targets.production.alias[]')
 
-          echo "ALIAS=$ALIAS" >> $GITHUB_ENV
-          echo "🌍 ALL Domains: $ALIAS"
+          echo "ALIAS_DOMAIN=$ALIAS_DOMAIN" >> $GITHUB_ENV
+          echo "🌍 ALL Domains: $ALIAS_DOMAIN"
 
 
       - name: Notify Discord
@@ -50,7 +50,7 @@ jobs:
             --arg title "🚀 Deployment Success!" \
             --arg status "✅ Success" \
             --arg preview_url "$DEPLOY_URL" \
-            --arg alias "$ALIAS" \
+            --arg alias "$ALIAS_DOMAIN" \
             --arg branch "$GITHUB_REF_NAME" \
             --arg author "${{ github.actor }}" \
             --arg time "$(date -u)" \
