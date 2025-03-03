@@ -53,7 +53,7 @@ jobs:
             --arg global_domain "https://next-js-vercel-env.vercel.app" \
             --arg branch "$GITHUB_REF_NAME" \
             --arg author "${{ github.actor }}" \
-            --arg time "$(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S')"\
+            --arg time "$(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S') Jakarta"\
             '{
               username: "Vercel Bot",
               avatar_url: "https://vercel.com/favicon.ico",
