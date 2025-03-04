@@ -51,8 +51,8 @@ jobs:
             --arg status "✅ Success" \
             --arg preview_url "$DEPLOY_URL" \
             --arg global_domain "https://next-js-vercel-env.vercel.app" \
-            --arg branch `$GITHUB_REF_NAME` \
-            --arg author `${{ github.actor }}` \
+            --arg branch "`$GITHUB_REF_NAME`" \
+            --arg author "`${{ github.actor }}`" \
             --arg time "$(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S') WIB"\
             '{
             "username": "GitHub Actions 🚀",
