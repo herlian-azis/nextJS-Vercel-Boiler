@@ -65,8 +65,8 @@ jobs:
                     { name: "📄 Status", value: $status },
                     { name: "🔗 Vercel Preview URL", value: $preview_url },
                     { name: "🌍 Global URL", value: $global_domain },
-                    { name: "🔀 Branch", value: "`$branch`" },
-                    { name: "👤 Author", value: `$author` },
+                    { name: "🔀 Branch", value: "`\($branch)`" },
+                    { name: "👤 Author", value: "`\($author)`" },
                     { name: "🕒 Deploy Time", value: $time }
                   ]
                 }
