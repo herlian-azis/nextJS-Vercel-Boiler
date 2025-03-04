@@ -78,7 +78,7 @@ jobs:
                -d "$JSON_PAYLOAD" \
                ${{ secrets.DISCORD_WEBHOOK }}
 
-               - name: Notify Discord
+      - name: Notify Discord 2
         run: |
               curl -X POST -H "Content-Type: application/json" -d '{
                 "username": "GitHub Actions 🚀 2",
