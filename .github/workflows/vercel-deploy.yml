@@ -53,7 +53,7 @@ jobs:
             --arg global_domain "https://next-js-vercel-env.vercel.app" \
             --arg branch "$GITHUB_REF_NAME" \
             --arg author "${{ github.actor }}" \
-            --arg time "$(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S') Jakarta"\
+            --arg time "$(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S') WIB"\
             '{
             "username": "GitHub Actions 🚀",
             "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
@@ -100,7 +100,7 @@ jobs:
                     }
                   ],
                   "footer": {
-                    "text": "GitHub Actions • $(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S') Jakarta"
+                    "text": "GitHub Actions • $(env TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S') WIB"
                   }
                 }]
               }' ${{ secrets.DISCORD_WEBHOOK }}
