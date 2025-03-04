@@ -78,6 +78,9 @@ jobs:
                -d "$JSON_PAYLOAD" \
                ${{ secrets.DISCORD_WEBHOOK }}
 
+        - name: Set Timezone to Jakarta
+          run: echo "CURRENT_TIME=$(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S WIB')" >> $GITHUB_ENV
+          
       - name: Notify Discord 2
         run: |
               curl -X POST -H "Content-Type: application/json" -d '{
@@ -100,7 +103,7 @@ jobs:
                     }
                   ],
                   "footer": {
-                    "text": "GitHub Actions • $(env TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S') WIB"
+                         "text": "GitHub Actions • '"${{ env.CURRENT_TIME }}"'" 
                   }
                 }]
               }' ${{ secrets.DISCORD_WEBHOOK }}
