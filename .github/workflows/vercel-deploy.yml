@@ -55,8 +55,8 @@ jobs:
             --arg author "${{ github.actor }}" \
             --arg time "$(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S') Jakarta"\
             '{
-              username: "Vercel Bot",
-              avatar_url: "https://vercel.com/favicon.ico",
+            "username": "GitHub Actions 🚀",
+            "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
               embeds: [
                 {
                   title: $title,
