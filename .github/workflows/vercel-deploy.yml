@@ -61,6 +61,7 @@ jobs:
                 {
                   title: $title,
                   color: 65280,
+                  "description": "**Project:** `next-js-vercel-env`\n📌 **Branch:** `${{ github.ref_name }}`\n🔗 **URL:** [Klik di sini](${{ env.DEPLOY_URL }})",
                   fields: [
                     { name: "📄 Status", value: $status },
                     { name: "🔗 Vercel Preview URL", value: $preview_url },
