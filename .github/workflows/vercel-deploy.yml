@@ -95,12 +95,12 @@ jobs:
                     },
                     {
                       "name": "⏳ Durasi",
-                      "value": "${{ github.run_duration_seconds }} detik",
+                      "value": "10000 detik",
                       "inline": true
                     }
                   ],
                   "footer": {
-                    "text": "GitHub Actions • $(date -u)"
+                    "text": "GitHub Actions • $(TZ=Asia/Jakarta date '+%Y-%m-%d %H:%M:%S') Jakarta"
                   }
                 }]
               }' ${{ secrets.DISCORD_WEBHOOK }}
