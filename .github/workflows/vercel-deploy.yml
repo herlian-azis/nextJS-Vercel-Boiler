@@ -77,3 +77,30 @@ jobs:
                -X POST \
                -d "$JSON_PAYLOAD" \
                ${{ secrets.DISCORD_WEBHOOK }}
+
+               - name: Notify Discord
+        run: |
+              curl -X POST -H "Content-Type: application/json" -d '{
+                "username": "GitHub Actions 🚀 2",
+                "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+                "embeds": [{
+                  "title": "🚀 Deployment Status",
+                  "description": "**Project:** `next-js-vercel-env`\n📌 **Branch:** `${{ github.ref_name }}`\n🔗 **URL:** [Klik di sini](${{ env.DEPLOY_URL }})",
+                  "color": 3066993,
+                  "fields": [
+                    {
+                      "name": "🟢 Status",
+                      "value": "Deployment **Berhasil** ✅",
+                      "inline": true
+                    },
+                    {
+                      "name": "⏳ Durasi",
+                      "value": "${{ github.run_duration_seconds }} detik",
+                      "inline": true
+                    }
+                  ],
+                  "footer": {
+                    "text": "GitHub Actions • $(date -u)"
+                  }
+                }]
+              }' ${{ secrets.DISCORD_WEBHOOK }}
